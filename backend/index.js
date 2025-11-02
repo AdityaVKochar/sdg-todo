@@ -15,26 +15,7 @@ mongoose.connect('mongodb://localhost:27017/todoapp', {
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log('MongoDB Connection Error:', err));
 
-const taskSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  dueAt: {
-    type: Date,
-    required: true,
-  },
-});
-
-const Task = mongoose.model('Task', taskSchema);
+const Task = require('./models/task');
 
 app.get('/api/tasks', async (req, res) => {
   try {
